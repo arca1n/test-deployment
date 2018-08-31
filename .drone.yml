@@ -1,0 +1,11 @@
+workspace:
+  base: /go
+  path: src/github.com/arca1n/test-deployment
+
+pipeline:
+  build:
+    image: golang:latest
+    commands:
+      - go get ./...
+      - go test
+      - go build
