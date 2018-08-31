@@ -7,4 +7,5 @@ pipeline:
     image: golang:latest
     commands:
       - go get github.com/beego/bee
+      - go get github.com/astaxie/beego
       - bee pack
