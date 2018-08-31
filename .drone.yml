@@ -8,4 +8,5 @@ pipeline:
     commands:
       - go get github.com/beego/bee
       - go get github.com/astaxie/beego
+      - cd /go/src/github.com/arca1n/test-deployment
       - bee pack
