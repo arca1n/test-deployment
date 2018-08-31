@@ -1,6 +1,6 @@
 workspace:
   base: /go
-  path: src/github.com/arca1n/test-deployment
+  path: src/test-deployment
 
 pipeline:
   build:
@@ -8,5 +8,5 @@ pipeline:
     commands:
       - go get github.com/beego/bee
       - go get github.com/astaxie/beego
-      - cd /go/src/github.com/arca1n/test-deployment
+      - cd /go/src/test-deployment
       - bee pack
