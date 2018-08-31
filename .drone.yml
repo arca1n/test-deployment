@@ -10,3 +10,15 @@ pipeline:
       - go get github.com/astaxie/beego
       - cd /go/src/test-deployment
       - bee pack
+
+  publish:
+    image: plugins/docker
+    repo: foo/bar
+    tags: latest
+
+  notify:
+    image: plugins/slack
+    webhook: https://hooks.slack.com/services/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
+    username: drone-bot
+    icon_url: https://raw.githubusercontent.com/drone/brand/master/logos/png/drone-logo-dark_256.png
+    channel: dev
