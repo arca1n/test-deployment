@@ -1,28 +1,27 @@
+--- 
 kind: pipeline
 name: test-deploy
-
-
-workspace:
+steps: 
+  - 
+    commands: 
+      - "go get github.com/beego/bee"
+      - "go get github.com/astaxie/beego"
+      - "cd /go/src/test-deployment"
+      - "bee pack"
+    image: "golang:latest"
+    name: build
+  - 
+    image: plugins/slack
+    name: slack
+    settings: 
+      channel: build-status
+      template: |-
+          {{#success build.status}}
+            build {{build.number}} succeeded. Good job.
+          {{else}}
+            build {{build.number}} failed. Fix me please.
+          {{/success}}
+      webhook: "https://hooks.slack.com/services/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"
+workspace: 
   base: /go
   path: src/test-deployment
-
-steps:
-- name: build
-  image: golang:latest
-  commands:
-  - go get github.com/beego/bee
-  - go get github.com/astaxie/beego
-  - cd /go/src/test-deployment
-  - bee pack
-
-- name: slack
-  image: plugins/slack
-  settings:
-    webhook: https://hooks.slack.com/services/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
-    channel: build-status
-    template: >
-      {{#success build.status}}
-        build {{build.number}} succeeded. Good job.
-      {{else}}
-        build {{build.number}} failed. Fix me please.
-      {{/success}}
