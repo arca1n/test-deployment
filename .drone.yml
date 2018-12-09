@@ -13,7 +13,7 @@ pipeline:
 
   notify:
     image: plugins/slack
-    webhook: https://hooks.slack.com/services/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
+    webhook: https://hooks.slack.com/services/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
     username: drone-bot
     icon_url: https://raw.githubusercontent.com/drone/brand/master/logos/png/drone-logo-dark_256.png
-    channel: build-status
+    channel: eng-alerts
