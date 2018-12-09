@@ -22,6 +22,4 @@ steps:
             build {{build.number}} failed. Fix me please.
           {{/success}}
       webhook: "https://hooks.slack.com/services/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"
-workspace: 
-  base: /go
-  path: src/test-deployment
+
