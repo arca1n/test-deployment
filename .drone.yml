@@ -1,19 +1,31 @@
+kind: pipeline
+name: test-deploy
+
+
 workspace:
   base: /go
   path: src/test-deployment
 
-pipeline:
-  build:
-    image: golang:latest
-    commands:
-      - go get github.com/beego/bee
-      - go get github.com/astaxie/beego
-      - cd /go/src/test-deployment
-      - bee pack
+steps:
+- name: build
+  image: golang:latest
+  commands:
+  - go get github.com/beego/bee
+  - go get github.com/astaxie/beego
+  - cd /go/src/test-deployment
+  - bee pack
 
-  notify:
+- name: integration
+  image: golang
+  commands:
+  - go get github.com/beego/bee
+  - go get github.com/astaxie/beego
+  when:
+    event:
+    - pull_request
+
+- name: notify
     image: plugins/slack
     webhook: https://hooks.slack.com/services/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
     username: drone-bot
     icon_url: https://raw.githubusercontent.com/drone/brand/master/logos/png/drone-logo-dark_256.png
-    channel: eng-alerts
