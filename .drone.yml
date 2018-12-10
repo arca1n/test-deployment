@@ -6,8 +6,6 @@ steps:
     commands: 
       - "go get github.com/beego/bee"
       - "go get github.com/astaxie/beego"
-      - "cd /go/src/test-deployment"
-      - "bee pack"
     image: "golang:latest"
     name: build
 
