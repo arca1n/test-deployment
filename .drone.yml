@@ -10,16 +10,4 @@ steps:
       - "bee pack"
     image: "golang:latest"
     name: build
-  - 
-    image: plugins/slack
-    name: slack
-    settings: 
-      channel: build-status
-      template: |-
-          {{#success build.status}}
-            build {{build.number}} succeeded. Good job.
-          {{else}}
-            build {{build.number}} failed. Fix me please.
-          {{/success}}
-      webhook: "https://hooks.slack.com/services/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"
 
